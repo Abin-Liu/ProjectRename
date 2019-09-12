@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
 			this.label1 = new System.Windows.Forms.Label();
 			this.txtSourceFolder = new System.Windows.Forms.TextBox();
 			this.btnBrowse = new System.Windows.Forms.Button();
@@ -113,6 +114,7 @@
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.txtSourceFolder);
 			this.Controls.Add(this.label1);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "FormMain";
 			this.Text = "Project Rename";
 			this.ResumeLayout(false);

@@ -13,13 +13,17 @@ namespace ProjectRename
 {
 	public partial class FormMain : Form
 	{
-		private string m_sourceFolder;
+		private string m_sourceFolder = null;
 
 		public FormMain()
 		{
 			InitializeComponent();
-			ConfigurationHelper ch = new ConfigurationHelper();
-			m_sourceFolder = ch.AppSettings("Source Folder");
+
+			using (RegistryHelper reg = new RegistryHelper("Abin", Application.ProductName, false))
+			{
+				m_sourceFolder = reg.ReadString("Source Folder");
+			}
+
 			if (!string.IsNullOrWhiteSpace(m_sourceFolder))
 			{
 				txtSourceFolder.Text = m_sourceFolder;
@@ -40,9 +44,11 @@ namespace ProjectRename
 
 			m_sourceFolder = folderBrowserDialog1.SelectedPath;
 			txtSourceFolder.Text = m_sourceFolder;
-			ConfigurationHelper ch = new ConfigurationHelper();
-			ch.AppSettings("Source Folder", m_sourceFolder);
-			ch.Save();
+
+			using (RegistryHelper reg = new RegistryHelper("Abin", Application.ProductName, true))
+			{
+				reg.WriteString("Source Folder", m_sourceFolder);
+			}			
 		}
 
 		private void btnExit_Click(object sender, EventArgs e)
