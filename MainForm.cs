@@ -98,7 +98,10 @@ namespace ProjectRename
 
 		private void txtFolder_TextChanged(object sender, EventArgs e)
 		{
-			txtOldName.Text = Path.GetFileName(txtFolder.Text);			
+			string name = Path.GetFileName(txtFolder.Text); ;
+			txtOldName.Text = name;
+			txtNewName.Text = name;
+			txtNewName.Focus();
 		}
 	}
 }
